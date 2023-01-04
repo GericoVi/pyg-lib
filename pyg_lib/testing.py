@@ -157,3 +157,18 @@ def to_edge_index(rowptr: Tensor, col: Tensor) -> Tensor:
 
 def remap_keys(mapping: Dict[Tuple[str, str, str], Any]) -> Dict[str, Any]:
     return {'__'.join(k): v for k, v in mapping.items()}
+
+def tensor(x: Any, dtype: torch.dtype, device: torch.device):
+    return None if x is None else torch.tensor(x, dtype=dtype, device=device)
+
+# Valid check lists ############################################################
+
+dtypes = [
+    torch.half, torch.bfloat16, torch.float, torch.double, torch.int,
+    torch.long
+]
+grad_dtypes = [torch.half, torch.float, torch.double]
+
+devices = [torch.device('cpu')]
+if torch.cuda.is_available():
+    devices += [torch.device('cuda:0')]

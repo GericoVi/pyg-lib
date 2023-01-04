@@ -1,0 +1,9 @@
+#pragma once
+
+#include "pyg_lib/csrc/macros.h"
+#include <torch/torch.h>
+
+torch::Tensor knn_cpu(torch::Tensor x, torch::Tensor y,
+                      torch::optional<torch::Tensor> ptr_x,
+                      torch::optional<torch::Tensor> ptr_y, int64_t k,
+                      int64_t num_workers);
